@@ -1,0 +1,14 @@
+{
+  "name": "fatass-site",
+  "version": "0.0.0",
+  "description": "Fitness and Training: Achieve, Sweat, Succeed - The website part",
+  "license": "GPL-3.0-only",
+  "author": "nul00000000",
+  "private": true,
+  "devDependencies": {
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.8.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
