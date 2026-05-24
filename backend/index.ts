@@ -76,6 +76,8 @@ fs.mkdirSync(config.dataDir + "/groups", {recursive: true});
 //real stuff
 const app = express();
 
+app.use(express.json());
+
 let groupCache: { [name: string]: Group; } = {};
 
 let groupTokens: {[usertoken: string]: GroupToken; } = {};
@@ -128,7 +130,7 @@ function saveCache(onDone: () => void = () => {}) {
 app.post("/create/", (req, res) => {
 	let groupCode: string = req.body.groupCode.toLowerCase();
     let groupPass: string = req.body.groupPass;
-    if(!groupCode.match("/^([0-9]|[a-z])+([0-9a-z]+)$/i") || groupCode.length > 32) {
+    if(groupCode.match("^([0-9]|[a-z])+([0-9a-z]+)$") == null || groupCode.length > 32) {
         res.send({code: 3, error: `Group code must be alphanumeric and between 2 and 32 characters`});
     } else {
         getGroup(groupCode, (group) => {
