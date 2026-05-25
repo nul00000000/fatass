@@ -87,7 +87,7 @@ function getGroup(groupCode: string, callback: (group: Group | null) => void): v
         callback(groupCache[groupCode]);
     } else {
         let all = fs.readdirSync(config.dataDir + "/groups");
-        if(groupCode + ".json" in all) {
+        if(all.includes(groupCode + ".json")) {
             fs.readFile(config.dataDir + "/groups/" + groupCode + ".json", (err, data) => {
                 if(err) {
                     console.error(`Could not load apparently existing group ${groupCode}: ${err}`);
@@ -151,13 +151,13 @@ app.post("/create/", (req, res) => {
 });
 
 app.post("/groupinfo/", (req, res) => {
-	if(req.body.groupCode.toLowerCase() in groupCache) {
-        getGroup(req.body.groupCode.toLowerCase(), (group) => {
-            res.send({code: 0, group: group});
-        });
-	} else {
-		res.send({code: 1, error: "Group does not exist"});
-	}
+	getGroup(req.body.groupCode.toLowerCase(), (group) => {
+		if(group) {
+			res.send({code: 0, group: group});
+		} else {
+			res.send({code: 1, error: "Group does not exist"});
+		}
+	});
 });
 
 app.post("/login/", (req, res) => {
