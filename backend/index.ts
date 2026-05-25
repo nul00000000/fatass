@@ -130,7 +130,9 @@ function saveCache(onDone: () => void = () => {}) {
 app.post("/create/", (req, res) => {
 	let groupCode: string = req.body.groupCode.toLowerCase();
     let groupPass: string = req.body.groupPass;
-    if(groupCode.match("^([0-9]|[a-z])+([0-9a-z]+)$") == null || groupCode.length > 32) {
+    if(!groupCode || !groupPass) {
+		res.sendStatus(400);	
+	} else if(groupCode.match("^([0-9]|[a-z])+([0-9a-z]+)$") == null || groupCode.length > 32) {
         res.send({code: 3, error: `Group code must be alphanumeric and between 2 and 32 characters`});
     } else {
         getGroup(groupCode, (group) => {
@@ -151,13 +153,17 @@ app.post("/create/", (req, res) => {
 });
 
 app.post("/groupinfo/", (req, res) => {
-	getGroup(req.body.groupCode.toLowerCase(), (group) => {
-		if(group) {
-			res.send({code: 0, group: group});
-		} else {
-			res.send({code: 1, error: "Group does not exist"});
-		}
-	});
+	if(!req.body.groupCode) {
+		res.sendStatus(400);	
+	} else {
+		getGroup(req.body.groupCode.toLowerCase(), (group) => {
+			if(group) {
+				res.send({code: 0, users: group.users});
+			} else {
+				res.send({code: 1, error: "Group does not exist"});
+			}
+		});
+	}
 });
 
 app.post("/login/", (req, res) => {
@@ -194,9 +200,11 @@ app.post("/addreps/", (req, res) => {
     let reps: number = req.body.reps;
     let date: string = req.body.date; //dd-mm-yyyy
 
-    if(!(exType in config.exTypes)) {
+	if(!token || !exType || !reps || !date) {
+		res.sendStatus(400);	
+	} else if(!(exType in config.exTypes)) {
         res.send({code: 6, error: "Exercise type does not exist"});
-    } else if(!date.match("[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}")) {
+    } else if(!date.match("[0-9]{2}-[0-9]{2}-[0-9]{4}")) {
         res.send({code: 7, error: "Invalid date"});
     } else if(token in groupTokens) {
         let groupToken = groupTokens[token];
@@ -212,6 +220,7 @@ app.post("/addreps/", (req, res) => {
                 }
                 group.users[groupToken.username].records[date].reps[exType] += reps;
                 group.users[groupToken.username].records[date].points += config.exTypes[exType].points * reps;
+				res.send({code: 0, record: group.users[groupToken.username].records[date]});
             }
         });
     } else {
@@ -224,7 +233,9 @@ app.post("/setweight/", (req, res) => {
     let weight: number = req.body.weight;
     let date: string = req.body.date; //dd-mm-yyyy
 
-    if(!date.match("[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}")) {
+    if(!token || !weight || !date) {
+		res.sendStatus(400);	
+	} else if(date.match("[0-9]{2}-[0-9]{2}-[0-9]{4}") == undefined) {
         res.send({code: 7, error: "Invalid date"});
     } else if(token in groupTokens) {
         let groupToken = groupTokens[token];
@@ -239,6 +250,7 @@ app.post("/setweight/", (req, res) => {
                     }
                 }
                 group.users[groupToken.username].records[date].weight = weight;
+				res.send({code: 0, record: group.users[groupToken.username].records[date]});
             }
         });
     } else {
