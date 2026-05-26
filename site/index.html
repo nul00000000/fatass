@@ -14,17 +14,38 @@
     </head>
     <body>
         <div id="mainContainer">
-            <div id="roomFinder">
-				<label for="roomCode">Room Code:</label>
-				<input type="text" id="roomCode" name="roomCode" size="10"/>
-				<button id="join" disabled>Join</button>
+            <div id="groupFinder">
+                <span>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" size="10"/>
+                </span>
+                <span>
+                    <label for="groupCode">Group Code:</label>
+				    <input type="text" id="groupCode" name="groupCode" size="10"/>
+                </span>
+				<span>
+                    <label for="groupPass">Password:</label>
+				    <input type="password" id="groupPass" name="groupPass" size="10"/>
+                </span>
+				<button id="join" disabled>Login</button>
 			</div>
-            <div id="votingContainer">
-                <div id="upvote">
-
+            <div id="fatassContainer">
+                <div id="logExSect">
+                    <div>Log Exercise</div>
+                    <span>
+                        <input type="number" id="numEx" name="numEx" size="3" value="10">
+                        <select id="extype" name="extype">
+                        </select>
+                    </span>
+                    <button id="subEx" disabled>Submit</button>
                 </div>
-                <div id="downvote">
-                    
+                <div id="logWeightSect">
+                    <div>Log Weight</div>
+                    <span>
+                        <label for="weight">Weight (lbs):</label>
+				        <input type="number" id="weight" name="weight" size="10" step="0.1"/>
+                    </span>
+                    <button id="subWeight">Submit</button>
                 </div>
             </div>
             <div id="credits">
