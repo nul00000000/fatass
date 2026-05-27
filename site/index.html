@@ -14,38 +14,48 @@
     </head>
     <body>
         <div id="mainContainer">
-            <div id="groupFinder">
-                <span>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" size="10"/>
-                </span>
-                <span>
-                    <label for="groupCode">Group Code:</label>
-				    <input type="text" id="groupCode" name="groupCode" size="10"/>
-                </span>
-				<span>
-                    <label for="groupPass">Password:</label>
-				    <input type="password" id="groupPass" name="groupPass" size="10"/>
-                </span>
-				<button id="join" disabled>Login</button>
-			</div>
-            <div id="fatassContainer">
-                <div id="logExSect">
-                    <div>Log Exercise</div>
+            <div id="title" class="header">
+                F<span class="titleSmallText">itness</span>
+                A<span class="titleSmallText">nd</span>
+                T<span class="titleSmallText">:raining</span>
+                A<span class="titleSmallText">,chieve</span>
+                S<span class="titleSmallText">,weat</span>
+                S<span class="titleSmallText">ucceed</span>
+            </div>
+            <div id="content">
+                <div id="groupFinder">
                     <span>
-                        <input type="number" id="numEx" name="numEx" size="3" value="10">
-                        <select id="extype" name="extype">
-                        </select>
+                        <label for="username">Username:</label>
+                        <input type="text" class="comicCenter" id="username" name="username" size="10"/>
                     </span>
-                    <button id="subEx">Submit</button>
+                    <span>
+                        <label for="groupCode">Group Code:</label>
+                        <input type="text" class="comicCenter" id="groupCode" name="groupCode" size="10"/>
+                    </span>
+                    <span>
+                        <label for="groupPass">Password:</label>
+                        <input type="password" class="comicCenter" id="groupPass" name="groupPass" size="10"/>
+                    </span>
+                    <button id="join" disabled>Login</button>
                 </div>
-                <div id="logWeightSect">
-                    <div>Log Weight</div>
-                    <span>
-                        <label for="weight">Weight (lbs):</label>
-				        <input type="number" id="weight" name="weight" size="10" step="0.1"/>
-                    </span>
-                    <button id="subWeight">Submit</button>
+                <div id="fatassContainer">
+                    <div id="logExSect">
+                        <div>Log Exercise</div>
+                        <span>
+                            <input class="comicCenter" type="number" id="numEx" name="numEx" size="3" value="10">
+                            <select class="comicCenter" id="extype" name="extype">
+                            </select>
+                        </span>
+                        <button id="subEx">Submit</button>
+                    </div>
+                    <div id="logWeightSect">
+                        <div>Log Weight</div>
+                        <span>
+                            <label for="weight">Weight (lbs):</label>
+                            <input type="number" class="comicCenter" id="weight" name="weight" size="10" step="0.1"/>
+                        </span>
+                        <button id="subWeight">Submit</button>
+                    </div>
                 </div>
             </div>
             <div id="credits">

@@ -2,60 +2,49 @@
 
 #fatassContainer {
     display: flex;
-    width: 60vh;
-    height: 95vh;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     display: none;
+    gap: 5em;
 }
 
-@keyframes vote {
-    0% {
-        transform: scale(1.00);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1.00);
-    }
-}
-
-#upvote {
-    width: 30vh;
-    height: 30vh;
-    background-image: url("assests/up.png");
-    background-size: cover;
-
+#title {
+    width: 8em;
+    margin: 0;
+    margin-left: 1vw;
+    text-align: center;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #122000;
+    font-size: 12vh;
+    font-weight: bold;
     user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    transform: translate(0, -5%);
 }
 
-#upvote:active {
-    animation: vote 0.1s linear;
+.titleSmallText {
+    font-size: 3vh;
+    transform: translate(0, 38%);
+    overflow: hidden;
+    direction: rtl;
 }
 
-#downvote {
-    width: 30vh;
-    height: 30vh;
-    background-image: url("assests/down.png");
-    background-size: cover;
-
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-
-#downvote:active {
-    animation: vote 0.1s linear;
+#header {
+    display: flex;
+    position: absolute;
+    top: 0%;
+    left: 0;
+    bottom: 88%;
+    width: 100%;
+    background-color: white;
+    border-bottom: 3px solid black;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1%;
 }
 
 body {
@@ -76,10 +65,17 @@ body {
     background-color: rgb(172, 172, 172);
 
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10em;
+}
 
 #groupFinder {
 	display: flex;
@@ -88,7 +84,7 @@ body {
 	align-items: center;
 }
 
-#username, #groupCode, #groupPass {
+.comicCenter {
 	font-size: 1.5vh;
 	font-family: "Comic Neue", cursive;
     font-weight: 700;
@@ -102,13 +98,10 @@ body {
 }
 
 #credits {
-    position: absolute;
-    bottom: 0.5vh;
-    left: 50%;
-    transform: translate(-50%, 0);
-
     font-size: 1.5vh;
     color: rgb(80, 80, 80);
+
+    margin-bottom: 0.5em;
 
     user-select: none;
     -webkit-user-select: none;

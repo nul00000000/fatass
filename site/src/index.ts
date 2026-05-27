@@ -144,6 +144,7 @@ function setup() {
                 let resp = JSON.parse(req.response);
                 if(resp.code == 0) {
                     token = resp.token;
+                    localStorage.setItem("fatassToken", token);
                     initMain();
     
                     localStorage.setItem("fatassUsername", username);
